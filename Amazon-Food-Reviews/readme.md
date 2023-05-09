@@ -1,23 +1,42 @@
-In this project, I will show two different approaches to sentiment analysis by using VADER Sentiment Analysis Tool and RobertA pretrained language model.
+## Sentiment Analysis with VADER and RobertA
 
-I start with importing the necessary packages. The dataset has almost 600k datapoints. To be able to save some time, I have chosen only the first 1000 datapoints. Otherwise, it can take up to 15 minutes to run the models in entire dataset. Then, I made a basic visualization of each score and their abundancy with a bar plot.
+This project demonstrates two different approaches to sentiment analysis using VADER Sentiment Analysis Tool and a pretrained RobertA language model.
 
-VADER Sentiment Analysis
-VADER is Valence Aware Dictionary and sEntiment Reasoner in short. VADER is a rule-based sentiment analysis tool that uses a lexicon of words and phrases with associated sentiment scores to analyze the sentiment of a text. Additionally, it takes into account the intensity of sentiment and the presence of negation in a sentence to provide a more accurate sentiment analysis result.
+### Prerequisites
+pandas
+numpy
+matplotlib
+seaborn
+nltk
+transformers
 
-I use the SentimentIntensityAnalyzer class from nltk.sentiment module, which is an NLTK implementation of VADER. As seen above, polarity_scores method gives four parameters: Negativity, neutrality, positivity and compound scores. The first three I believe quite clear, but to clarify the compound score: It basically positions the sentiment between -1 and 1. 1 is the most positive and -1 is the most negative in the spectrum. Now, I write a loop to calculate the each score for each sentiment and I will store the results in a dictionary.
+### Dataset
 
-Now, I have results of VADER Sentiment analysis and the scores given by the customers. I will check, what is the distribution of Compound Score according to Amazon Scores. For that, I use barplot from seaborn library.
+The dataset used is the Amazon Fine Food Reviews dataset. The original dataset has almost 600k datapoints. To save time, the code in this repository only uses the first 1000 datapoints. If you want to run the models with the entire dataset, be aware that it can take up to 15 minutes to run.
 
+### VADER Sentiment Analysis
 
+VADER is a rule-based sentiment analysis tool that uses a lexicon of words and phrases with associated sentiment scores to analyze the sentiment of a text. Additionally, it takes into account the intensity of sentiment and the presence of negation in a sentence to provide a more accurate sentiment analysis result.
 
-RobertA Pretrained Language Model:
-At the second part of the project, I will use RobertA for sentiment analysis.
+To use VADER, I use the SentimentIntensityAnalyzer class from the nltk.sentiment module. The polarity_scores() method is used to give four parameters: Negativity, neutrality, positivity, and compound scores.
 
-RobertA is Robustly Optimized BERT Pretraining Approach in short. It is a state-of-the-art pretrained language model based on the Transformer architecture. RobertA is usually used for more complex NLP tasks such as language generation or question answering, however, can be used also for sentiment analysis. To be able to use this model, first I will import the necessary classes and the softmax function.
+The compound score ranges from -1 to 1, with 1 being the most positive and -1 being the most negative.
 
-I use the pre-trained sentiment analysis model based on the Twitter RoBERTa architecture from the Hugging Face Transformers library.
+### RobertA Language Model
 
-The model can be accessed from the link below:
+RobertA is a pretrained transformer-based language model developed by Hugging Face. It can be used for many natural language processing (NLP) tasks, including sentiment analysis.
 
-https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment
+In this project, RobertA is used to classify the sentiment of the Amazon reviews. 
+
+### Results
+The results of the sentiment analysis are plotted using seaborn. There are four plots:
+
+Compound score vs. Amazon score
+Positive score vs. Amazon score
+Neutral score vs. Amazon score
+Negative score vs. Amazon score
+
+The compound score seems to be relevant to the Amazon scores in which 1 has negative values in the compound score, while 5 has the highest positive compound score. The barplots also show that score 1 has the lowest positive score as it should be and vice versa for the negative score.
+
+### Conclusion
+This project demonstrates two approaches to sentiment analysis and shows the distribution of sentiment scores in the Amazon Fine Food Reviews dataset. The VADER sentiment analysis approach uses a rule-based tool to analyze sentiment, while the RobertA approach uses a pretrained transformer-based language model. The results show that both approaches are able to classify the sentiment of the reviews.
